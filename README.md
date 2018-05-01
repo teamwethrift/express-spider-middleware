@@ -1,46 +1,50 @@
-# spider-detector
+# express-spider-middleware
 
-[![Build Status](https://travis-ci.org/binarykitchen/spider-detector.svg?branch=master)](https://travis-ci.org/binarykitchen/spider-detector) [![npm version](https://badge.fury.io/js/spider-detector.svg)](https://badge.fury.io/js/spider-detector)
+An ExpressJS middleware for detecting search engine crawlers and spiders, with the option of including a callback to perform additional search engine-specific logic such as logging or monitoring.
 
-A tiny node module to detect spiders/crawlers quickly and comes with optional middleware for ExpressJS
-
-It might be useful when you have a single page app but want to deliver static pages for spiders.
+This module is a fork of Michael Heuberger's [spider-detector](https://github.com/binarykitchen/spider-detector). We use this module at [Wethrift.com](https://www.wethrift.com) to handle additional logging and monitoring of search engine crawlers.
 
 ## Install
 
 ```
-npm install spider-detector
+npm install express-spider-middleware
 ```
 
-## Direct Example
+## User-agent string detector
+
+Detect whether any user-agent string matches a known crawler or bot.
 
 ```js
 var detector = require('spider-detector')
 detector.isSpider('baiduspider') // return true
 ```
 
-## ExpressJS example
+## ExpressJS middleware - Detecting crawlers
+
+Use as an ExpressJS middleware to attach an `isSpider` property to every request.
 
 ```js
-var detector = require('spider-detector'),
+var expressSpiderMiddleware = require('express-spider-middleware'),
     express  = require('express'),
     app      = express()
 
-app.use(detector.middleware())
+app.use(expressSpiderMiddleware.middleware())
 
 app.get('/*', function(req, res) {
     if (req.isSpider()) {
-        // do something else, i.E. send a static page
+        // handle request from search engine crawler
     } else {
-        // send single page app
+        // handle all other requests
     }
 })
 ```
 
-## Why? There are already modules out there
+## Using a callback to handle additional logic for all requests
 
-Well, I wanted one which does not use `readFileSync` and comes with optional middleware. Furthermore some hackers do not classify Googlebot as a spider anymore which poses a problem sometimes, see next question.
+The `.middleware()` method accepts an optional callback function that will execute for all routes when a crawler is detected.
 
-## What about Googlebot?
-
-Yep, Googlebot is able to deal with single page apps but this feature is pretty unstable. Especially under AngularJS when hash fragments are disabled with `$locationProvider.html5Mode(true)`. That's why - against all odds - I have classified `googlebot` as a spider in this module.
+```js
+app.use(expressSpiderMiddleware.middleware(function(req){
+  console.log('Crawler detected:', req.get('user-agent'))
+}))
+```

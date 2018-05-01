@@ -1,16 +1,16 @@
 {
-  "name": "spider-detector",
-  "version": "1.0.18",
-  "description": "A tiny node module to detect spiders/crawlers quickly and comes with optional middleware for ExpressJS",
+  "name": "express-spider-middleware",
+  "version": "1.1.0",
+  "description": "And ExpressJS middleware for detecting search engine crawlers/spiders and handling crawler-specific logic such as additional logging for requests from spiders",
   "main": "index.js",
   "author": {
-    "name": "Michael Heuberger",
-    "email": "michael.heuberger@binarykitchen.com",
-    "url": "http://binarykitchen.com"
+    "name": "Wethrift",
+    "email": "teamwethrift@gmail.com",
+    "url": "https://www.wethrift.com"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:binarykitchen/spider-detector.git"
+    "url": "git@github.com:teamwethrift/express-spider-middleware.git"
   },
   "readmeFilename": "README.md",
   "scripts": {
@@ -27,13 +27,19 @@
     "spider",
     "bot",
     "middleware",
+    "search engine",
+    "google",
+    "SEO",
     "single page app",
-    "expressjs"
+    "expressjs",
+    "node",
+    "javascriot"
   ],
   "license": "MIT",
   "devDependencies": {
     "express": "4.16.1",
     "superagent": "3.6.3",
     "tape": "4.8.0"
-  }
+  },
+  "homepage": "https://wethrift.com"
 }

@@ -34,9 +34,12 @@ function isSpider (ua) {
 module.exports = {
   isSpider: isSpider,
 
-  middleware: function () {
+  middleware: function (callback) {
     return function (req, res, next) {
       req.isSpider = isSpider.bind(undefined, req.get('user-agent'))
+      if(req.isSpider && typeof callback === 'function'){
+        callback(req)
+      }
       next()
     }
   }
