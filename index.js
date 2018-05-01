@@ -37,7 +37,7 @@ module.exports = {
   middleware: function (callback) {
     return function (req, res, next) {
       req.isSpider = isSpider.bind(undefined, req.get('user-agent'))
-      if(req.isSpider && typeof callback === 'function'){
+      if(isSpider(req.get('user-agent')) && typeof callback === 'function'){
         callback(req)
       }
       next()
