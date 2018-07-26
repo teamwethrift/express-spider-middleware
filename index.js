@@ -22,7 +22,8 @@ const spiders = [
   /crawler/i,
   /Qwantify/i,
   /Yahoo! Slurp/i,
-  /pinterest/i
+  /pinterest/i,
+  /Mediapartners-Google/i
 ]
 
 function isSpider (ua) {
