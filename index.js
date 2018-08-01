@@ -24,7 +24,8 @@ const spiders = [
   /Yahoo! Slurp/i,
   /pinterest/i,
   /Mediapartners-Google/i,
-  /CloudFlare/i
+  /CloudFlare/i,
+  /DemandbasePublisherAnalyzer/i
 ]
 
 function isSpider (ua) {
