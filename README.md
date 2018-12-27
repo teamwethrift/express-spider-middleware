@@ -15,7 +15,7 @@ npm install express-spider-middleware
 Detect whether any user-agent string matches a known crawler or bot.
 
 ```js
-var detector = require('spider-detector')
+var detector = require('express-spider-middleware')
 detector.isSpider('baiduspider') // return true
 ```
 
