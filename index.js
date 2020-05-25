@@ -26,25 +26,26 @@ const spiders = [
   /Mediapartners-Google/i,
   /CloudFlare/i,
   /DemandbasePublisherAnalyzer/i,
-  /yeti/i
-]
+  /yeti/i,
+  /ias-va/i
+];
 
-function isSpider (ua) {
-  return spiders.some(function (spider) {
-    return spider.test(ua)
-  })
+function isSpider(ua) {
+  return spiders.some(function(spider) {
+    return spider.test(ua);
+  });
 }
 
 module.exports = {
   isSpider: isSpider,
 
-  middleware: function (callback) {
-    return function (req, res, next) {
-      req.isSpider = isSpider.bind(undefined, req.get('user-agent'))
-      if(isSpider(req.get('user-agent')) && typeof callback === 'function'){
-        callback(req)
+  middleware: function(callback) {
+    return function(req, res, next) {
+      req.isSpider = isSpider.bind(undefined, req.get("user-agent"));
+      if (isSpider(req.get("user-agent")) && typeof callback === "function") {
+        callback(req);
       }
-      next()
-    }
+      next();
+    };
   }
-}
+};
