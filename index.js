@@ -27,7 +27,8 @@ const spiders = [
   /CloudFlare/i,
   /DemandbasePublisherAnalyzer/i,
   /yeti/i,
-  /ias-va/i
+  /ias-va/i,
+  /admantx/i
 ];
 
 function isSpider(ua) {
