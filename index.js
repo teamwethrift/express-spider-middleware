@@ -28,7 +28,8 @@ const spiders = [
   /DemandbasePublisherAnalyzer/i,
   /yeti/i,
   /ias-va/i,
-  /admantx/i
+  /admantx/i,
+  /thetradedesk/i
 ];
 
 function isSpider(ua) {
